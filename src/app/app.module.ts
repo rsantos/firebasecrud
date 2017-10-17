@@ -1,3 +1,4 @@
+import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { AngularFireDatabaseModule } from 'angularfire2/database/public_api';
 import { AddShoppingPage } from '../pages/add-shopping/add-shopping';
 import { ShoppingListPage } from '../pages/shopping-list/shopping-list';
@@ -32,7 +33,8 @@ import { MyApp } from './app.component';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AngularFireDatabase
   ]
 })
 export class AppModule {}

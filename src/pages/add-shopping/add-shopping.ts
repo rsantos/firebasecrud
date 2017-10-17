@@ -1,5 +1,4 @@
-import { FirebaseListObservable } from 'angularfire2/database-deprecated';
-import { AngularFireDatabase } from 'angularfire2/database/public_api';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { ShoppingItem } from './../../models/shopping-item/shopping-item.interface';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -25,7 +24,7 @@ export class AddShoppingPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private database: AngularFireDatabase) {
-      this.shoppingItemRef$ = this.database.list('shopping-list');
+    this.shoppingItemRef$ = this.database.list('shopping-list');
   }
 
   addShoppingItem(shoppingItem: ShoppingItem) {
