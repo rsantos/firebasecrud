@@ -2,7 +2,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { ShoppingItem } from './../../models/shopping-item/shopping-item.interface';
 import { AddShoppingPage } from './../add-shopping/add-shopping';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ActionSheetController, IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the ShoppingListPage page.
@@ -23,9 +23,38 @@ export class ShoppingListPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private database: AngularFireDatabase) {
+    private database: AngularFireDatabase,
+    private actionSheetCtrl: ActionSheetController) {
 
     this.shoppingListRef$ = this.database.list('shopping-list');
+  }
+
+  selectShoppingItem(shoppingItem: ShoppingItem ) {
+    this.actionSheetCtrl.create({
+      title: `${shoppingItem.itemName}`,
+      buttons: [
+        {
+          text: 'Edit',
+          handler: () => {
+            console.log('edit');
+          }
+        },
+        {
+          text: 'Delete',
+          role: 'destructive',
+          handler: () => {
+            this.shoppingListRef$.remove(shoppingItem.$key);
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('The user has selected the cancel button');
+          }
+        }
+      ]
+    }).present();
   }
 
   navigateToAddShoppingPage() {
