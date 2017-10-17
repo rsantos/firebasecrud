@@ -1,3 +1,4 @@
+import { EditShoppingPage } from '../edit-shopping/edit-shopping';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { ShoppingItem } from './../../models/shopping-item/shopping-item.interface';
 import { AddShoppingPage } from './../add-shopping/add-shopping';
@@ -36,7 +37,9 @@ export class ShoppingListPage {
         {
           text: 'Edit',
           handler: () => {
-            console.log('edit');
+            this.navCtrl.push(EditShoppingPage, {
+              shoppingItemId: shoppingItem.$key
+            });
           }
         },
         {

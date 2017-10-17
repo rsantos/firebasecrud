@@ -1,3 +1,4 @@
+import { EditShoppingPage } from './../pages/edit-shopping/edit-shopping';
 import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { AngularFireDatabaseModule } from 'angularfire2/database/public_api';
 import { AddShoppingPage } from '../pages/add-shopping/add-shopping';
@@ -16,7 +17,8 @@ import { MyApp } from './app.component';
   declarations: [
     MyApp,
     ShoppingListPage,
-    AddShoppingPage
+    AddShoppingPage,
+    EditShoppingPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { MyApp } from './app.component';
   entryComponents: [
     MyApp,
     ShoppingListPage,
-    AddShoppingPage
+    AddShoppingPage,
+    EditShoppingPage
   ],
   providers: [
     StatusBar,
