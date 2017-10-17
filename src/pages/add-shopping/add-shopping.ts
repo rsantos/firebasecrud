@@ -1,3 +1,5 @@
+import { FirebaseListObservable } from 'angularfire2/database-deprecated';
+import { AngularFireDatabase } from 'angularfire2/database/public_api';
 import { ShoppingItem } from './../../models/shopping-item/shopping-item.interface';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -17,12 +19,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class AddShoppingPage {
 
   shoppingItem = {} as ShoppingItem;
+  shoppingItemRef$: FirebaseListObservable<ShoppingItem[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private database: AngularFireDatabase) {
+      this.shoppingItemRef$ = this.database.list('shopping-list');
   }
 
   addShoppingItem(shoppingItem: ShoppingItem) {
-    console.log(shoppingItem);
+    this.shoppingItemRef$.push({
+      itemName: this.shoppingItem.itemName,
+      itemNumber: Number(this.shoppingItem.itemNumber)
+    });
+    this.shoppingItem = {} as ShoppingItem;
+    this.navCtrl.pop();
   }
 
 }

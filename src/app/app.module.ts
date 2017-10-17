@@ -1,3 +1,4 @@
+import { AngularFireDatabaseModule } from 'angularfire2/database/public_api';
 import { AddShoppingPage } from '../pages/add-shopping/add-shopping';
 import { ShoppingListPage } from '../pages/shopping-list/shopping-list';
 import { FIREBASE_CREDENTIALS } from './firebase.credentials';
@@ -19,7 +20,8 @@ import { MyApp } from './app.component';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(FIREBASE_CREDENTIALS)
+    AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
